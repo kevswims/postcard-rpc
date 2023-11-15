@@ -313,7 +313,7 @@ dependencies = [
 [[package]]
 name = "embassy-embedded-hal"
 version = "0.1.0"
-source = "git+https://github.com/embassy-rs/embassy?rev=b3367be9c8f0eb54d500dc2e6f652ade05859088#b3367be9c8f0eb54d500dc2e6f652ade05859088"
+source = "git+https://github.com/embassy-rs/embassy?rev=ea99671729be91b63156097b01128c3ea6f74a75#ea99671729be91b63156097b01128c3ea6f74a75"
 dependencies = [
  "defmt",
  "embassy-futures",
@@ -330,7 +330,7 @@ dependencies = [
 [[package]]
 name = "embassy-executor"
 version = "0.3.2"
-source = "git+https://github.com/embassy-rs/embassy?rev=b3367be9c8f0eb54d500dc2e6f652ade05859088#b3367be9c8f0eb54d500dc2e6f652ade05859088"
+source = "git+https://github.com/embassy-rs/embassy?rev=ea99671729be91b63156097b01128c3ea6f74a75#ea99671729be91b63156097b01128c3ea6f74a75"
 dependencies = [
  "atomic-polyfill 1.0.3",
  "cortex-m",
@@ -342,13 +342,13 @@ dependencies = [
 
 [[package]]
 name = "embassy-futures"
-version = "0.1.0"
-source = "git+https://github.com/embassy-rs/embassy?rev=b3367be9c8f0eb54d500dc2e6f652ade05859088#b3367be9c8f0eb54d500dc2e6f652ade05859088"
+version = "0.1.1"
+source = "git+https://github.com/embassy-rs/embassy?rev=ea99671729be91b63156097b01128c3ea6f74a75#ea99671729be91b63156097b01128c3ea6f74a75"
 
 [[package]]
 name = "embassy-hal-internal"
 version = "0.1.0"
-source = "git+https://github.com/embassy-rs/embassy?rev=b3367be9c8f0eb54d500dc2e6f652ade05859088#b3367be9c8f0eb54d500dc2e6f652ade05859088"
+source = "git+https://github.com/embassy-rs/embassy?rev=ea99671729be91b63156097b01128c3ea6f74a75#ea99671729be91b63156097b01128c3ea6f74a75"
 dependencies = [
  "cortex-m",
  "critical-section",
@@ -359,7 +359,7 @@ dependencies = [
 [[package]]
 name = "embassy-macros"
 version = "0.2.1"
-source = "git+https://github.com/embassy-rs/embassy?rev=b3367be9c8f0eb54d500dc2e6f652ade05859088#b3367be9c8f0eb54d500dc2e6f652ade05859088"
+source = "git+https://github.com/embassy-rs/embassy?rev=ea99671729be91b63156097b01128c3ea6f74a75#ea99671729be91b63156097b01128c3ea6f74a75"
 dependencies = [
  "darling",
  "proc-macro2",
@@ -370,7 +370,7 @@ dependencies = [
 [[package]]
 name = "embassy-net"
 version = "0.2.1"
-source = "git+https://github.com/embassy-rs/embassy?rev=b3367be9c8f0eb54d500dc2e6f652ade05859088#b3367be9c8f0eb54d500dc2e6f652ade05859088"
+source = "git+https://github.com/embassy-rs/embassy?rev=ea99671729be91b63156097b01128c3ea6f74a75#ea99671729be91b63156097b01128c3ea6f74a75"
 dependencies = [
  "as-slice 0.2.1",
  "atomic-pool",
@@ -382,7 +382,7 @@ dependencies = [
  "embedded-nal-async",
  "futures",
  "generic-array 0.14.7",
- "heapless 0.7.16",
+ "heapless 0.8.0",
  "managed",
  "smoltcp",
  "stable_deref_trait",
@@ -391,7 +391,7 @@ dependencies = [
 [[package]]
 name = "embassy-net-driver"
 version = "0.2.0"
-source = "git+https://github.com/embassy-rs/embassy?rev=b3367be9c8f0eb54d500dc2e6f652ade05859088#b3367be9c8f0eb54d500dc2e6f652ade05859088"
+source = "git+https://github.com/embassy-rs/embassy?rev=ea99671729be91b63156097b01128c3ea6f74a75#ea99671729be91b63156097b01128c3ea6f74a75"
 dependencies = [
  "defmt",
 ]
@@ -399,7 +399,7 @@ dependencies = [
 [[package]]
 name = "embassy-net-driver-channel"
 version = "0.2.0"
-source = "git+https://github.com/embassy-rs/embassy?rev=b3367be9c8f0eb54d500dc2e6f652ade05859088#b3367be9c8f0eb54d500dc2e6f652ade05859088"
+source = "git+https://github.com/embassy-rs/embassy?rev=ea99671729be91b63156097b01128c3ea6f74a75#ea99671729be91b63156097b01128c3ea6f74a75"
 dependencies = [
  "embassy-futures",
  "embassy-net-driver",
@@ -409,7 +409,7 @@ dependencies = [
 [[package]]
 name = "embassy-stm32"
 version = "0.1.0"
-source = "git+https://github.com/embassy-rs/embassy?rev=b3367be9c8f0eb54d500dc2e6f652ade05859088#b3367be9c8f0eb54d500dc2e6f652ade05859088"
+source = "git+https://github.com/embassy-rs/embassy?rev=ea99671729be91b63156097b01128c3ea6f74a75#ea99671729be91b63156097b01128c3ea6f74a75"
 dependencies = [
  "bit_field",
  "bxcan",
@@ -450,19 +450,19 @@ dependencies = [
 [[package]]
 name = "embassy-sync"
 version = "0.4.0"
-source = "git+https://github.com/embassy-rs/embassy?rev=b3367be9c8f0eb54d500dc2e6f652ade05859088#b3367be9c8f0eb54d500dc2e6f652ade05859088"
+source = "git+https://github.com/embassy-rs/embassy?rev=ea99671729be91b63156097b01128c3ea6f74a75#ea99671729be91b63156097b01128c3ea6f74a75"
 dependencies = [
  "cfg-if",
  "critical-section",
  "defmt",
  "futures-util",
- "heapless 0.7.16",
+ "heapless 0.8.0",
 ]
 
 [[package]]
 name = "embassy-time"
 version = "0.1.5"
-source = "git+https://github.com/embassy-rs/embassy?rev=b3367be9c8f0eb54d500dc2e6f652ade05859088#b3367be9c8f0eb54d500dc2e6f652ade05859088"
+source = "git+https://github.com/embassy-rs/embassy?rev=ea99671729be91b63156097b01128c3ea6f74a75#ea99671729be91b63156097b01128c3ea6f74a75"
 dependencies = [
  "cfg-if",
  "critical-section",
@@ -470,20 +470,20 @@ dependencies = [
  "embedded-hal 0.2.7",
  "embedded-hal 1.0.0-rc.1",
  "futures-util",
- "heapless 0.7.16",
+ "heapless 0.8.0",
 ]
 
 [[package]]
 name = "embassy-usb"
 version = "0.1.0"
-source = "git+https://github.com/embassy-rs/embassy?rev=b3367be9c8f0eb54d500dc2e6f652ade05859088#b3367be9c8f0eb54d500dc2e6f652ade05859088"
+source = "git+https://github.com/embassy-rs/embassy?rev=ea99671729be91b63156097b01128c3ea6f74a75#ea99671729be91b63156097b01128c3ea6f74a75"
 dependencies = [
  "defmt",
  "embassy-futures",
  "embassy-net-driver-channel",
  "embassy-sync",
  "embassy-usb-driver",
- "heapless 0.7.16",
+ "heapless 0.8.0",
  "ssmarshal",
  "usbd-hid",
 ]
@@ -491,7 +491,7 @@ dependencies = [
 [[package]]
 name = "embassy-usb-driver"
 version = "0.1.0"
-source = "git+https://github.com/embassy-rs/embassy?rev=b3367be9c8f0eb54d500dc2e6f652ade05859088#b3367be9c8f0eb54d500dc2e6f652ade05859088"
+source = "git+https://github.com/embassy-rs/embassy?rev=ea99671729be91b63156097b01128c3ea6f74a75#ea99671729be91b63156097b01128c3ea6f74a75"
 dependencies = [
  "defmt",
 ]
@@ -552,24 +552,22 @@ dependencies = [
 
 [[package]]
 name = "embedded-nal"
-version = "0.7.0"
+version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "447416d161ba378782c13e82b11b267d6d2104b4913679a7c5640e7e94f96ea7"
+checksum = "b8a943fad5ed3d3f8a00f1e80f6bba371f1e7f0df28ec38477535eb318dc19cc"
 dependencies = [
- "heapless 0.7.16",
  "nb 1.1.0",
  "no-std-net",
 ]
 
 [[package]]
 name = "embedded-nal-async"
-version = "0.6.0"
+version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a0f75f0ac83505f354443332324ef1399463902718b95b4ce153ae9b3660f341"
+checksum = "24708d5aedfd9e82aec45d2782cd0f59561822c5f352a3c40bb5824b72337653"
 dependencies = [
  "embedded-io-async",
  "embedded-nal",
- "heapless 0.7.16",
  "no-std-net",
 ]
 
@@ -736,7 +734,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "db04bc24a18b9ea980628ecf00e6c0264f3c1426dac36c00cb49b6fbad8b0743"
 dependencies = [
  "atomic-polyfill 0.1.11",
- "defmt",
  "hash32 0.2.1",
  "rustc_version 0.4.0",
  "serde",
@@ -750,6 +747,7 @@ version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0bfb9eb618601c89945a70e254898da93b13be0388091d42117462b265bb3fad"
 dependencies = [
+ "defmt",
  "hash32 0.3.1",
  "stable_deref_trait",
 ]
@@ -902,7 +900,7 @@ dependencies = [
 
 [[package]]
 name = "postcard-rpc"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "blake2",
  "cobs",
@@ -1034,14 +1032,13 @@ dependencies = [
 [[package]]
 name = "smoltcp"
 version = "0.10.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8d2e3a36ac8fea7b94e666dfa3871063d6e0a5c9d5d4fec9a1a6b7b6760f0229"
+source = "git+https://github.com/smoltcp-rs/smoltcp?rev=9b791ae3057e10f7afcb70c67deb5daf714293a9#9b791ae3057e10f7afcb70c67deb5daf714293a9"
 dependencies = [
  "bitflags",
  "byteorder",
  "cfg-if",
  "defmt",
- "heapless 0.7.16",
+ "heapless 0.8.0",
  "managed",
 ]
 
@@ -1091,7 +1088,7 @@ dependencies = [
 [[package]]
 name = "stm32-metapac"
 version = "14.0.0"
-source = "git+https://github.com/embassy-rs/stm32-data-generated?tag=stm32-data-1374ed622714ef4702826699ca21cc1f741f4133#6cdfeaf943b557d4ece079c79201f158a81f61a7"
+source = "git+https://github.com/embassy-rs/stm32-data-generated?tag=stm32-data-fbb8f77326dd066aa6c0d66b3b46e76a569dda8b#ed099ca17ed45e916977e1e34d81701c055cbfb1"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",

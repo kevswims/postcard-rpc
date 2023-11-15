@@ -1,18 +1,18 @@
-use embassy_stm32::peripherals::{PA11, PA12, USB_OTG_FS};
-use embassy_stm32::usb_otg::Driver;
-use embassy_stm32::{bind_interrupts, peripherals, usb_otg};
+use embassy_stm32::peripherals::{PA11, PA12, USB};
+use embassy_stm32::usb::{self, Driver};
+use embassy_stm32::{bind_interrupts, peripherals};
 use embassy_usb::class::cdc_acm::CdcAcmClass;
 use embassy_usb::Builder;
 use embassy_usb::{class::cdc_acm::State, driver::EndpointError, UsbDevice};
 use static_cell::StaticCell;
 
-pub type OtgDriver = Driver<'static, peripherals::USB_OTG_FS>;
+pub type OtgDriver = Driver<'static, peripherals::USB>;
 
 pub static USB_BUFS: StaticCell<UsbBuffers> = StaticCell::new();
 pub static USB_STATE: StaticCell<State> = StaticCell::new();
 
 bind_interrupts!(pub struct Irqs {
-    OTG_FS => usb_otg::InterruptHandler<peripherals::USB_OTG_FS>;
+    USB_LP => usb::InterruptHandler<peripherals::USB>;
 });
 
 #[derive(defmt::Format, Debug)]
@@ -48,7 +48,7 @@ impl UsbBuffers {
 }
 
 pub struct UsbResources {
-    pub periph: USB_OTG_FS,
+    pub periph: USB,
     pub dp: PA12,
     pub dm: PA11,
 }
@@ -65,9 +65,7 @@ pub fn configure_usb(
     let state = USB_STATE.init(State::new());
 
     // Create the driver, from the HAL.
-    let mut config = embassy_stm32::usb_otg::Config::default();
-    config.vbus_detection = true;
-    let driver = Driver::new_fs(p.periph, Irqs, p.dp, p.dm, &mut bufs.ep_out_buffer, config);
+    let driver = Driver::new(p.periph, Irqs, p.dp, p.dm);
 
     // Create embassy-usb Config
     let mut config = embassy_usb::Config::new(0x16c0, 0x27DD);

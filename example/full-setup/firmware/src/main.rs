@@ -10,8 +10,7 @@ use defmt::info;
 use embassy_executor::Spawner;
 use embassy_stm32::{
     rcc::{
-        AHBPrescaler, APBPrescaler, Hse, HseMode, Pll, PllMul, PllPreDiv, PllSource, Pllp, Pllq,
-        Sysclk,
+        AHBPrescaler, APBPrescaler, Clock48MhzSrc, ClockSrc, Pll, PllM, PllN, PllQ, PllR, PllSource,
     },
     time::Hertz,
     Config,
@@ -28,29 +27,26 @@ async fn main(spawner: Spawner) {
 
     let config = {
         let mut config = Config::default();
-        config.rcc.hse = Some(Hse {
-            freq: Hertz(12_000_000),
-            mode: HseMode::Oscillator,
-        });
-        config.rcc.pll_src = PllSource::HSE;
         config.rcc.pll = Some(Pll {
-            prediv: PllPreDiv::DIV6,
-            mul: PllMul::MUL168,
-            divp: Some(Pllp::DIV2), // 12mhz / 6 * 168 / 2 = 168Mhz.
-            divq: Some(Pllq::DIV7), // 12mhz / 6 * 168 / 7 = 48Mhz.
-            divr: None,
+            source: PllSource::HSE(Hertz(8_000_000)),
+            prediv_m: PllM::DIV2,
+            mul_n: PllN::MUL72,
+            div_p: None,
+            div_q: Some(PllQ::DIV6),
+            div_r: Some(PllR::DIV2),
         });
         config.rcc.ahb_pre = AHBPrescaler::DIV1;
         config.rcc.apb1_pre = APBPrescaler::DIV4;
         config.rcc.apb2_pre = APBPrescaler::DIV2;
-        config.rcc.sys = Sysclk::PLL1_P;
+        config.rcc.mux = ClockSrc::PLL;
+        config.rcc.clock_48mhz_src = Some(Clock48MhzSrc::PllQ);
         config
     };
 
     let p = embassy_stm32::init(config);
 
     let usb_r = UsbResources {
-        periph: p.USB_OTG_FS,
+        periph: p.USB,
         dp: p.PA12,
         dm: p.PA11,
     };

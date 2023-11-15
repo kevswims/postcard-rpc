@@ -6,7 +6,7 @@ use james_icd::{sleep::{Sleep, SleepDone, SLEEP_PATH}, wire_error::{FatalError, 
 #[tokio::main]
 async fn main() {
     let client = HostClient::<FatalError>::new(
-        "/dev/tty.usbmodem123456781",
+        "/dev/serial/by-id/usb-Embassy_USB-serial_example_12345678-if00",
         ERROR_PATH,
     );
 
