@@ -172,8 +172,10 @@ pub mod dispatch_impl {
             driver: D,
             config: Config<'static>,
             tx_buf: &'static mut [u8],
+            max_packet_size: u16,
         ) -> (UsbDevice<'static, D>, WireTxImpl<M, D>, WireRxImpl<D>) {
-            let (builder, wtx, wrx) = self.init_without_build(driver, config, tx_buf);
+            let (builder, wtx, wrx) =
+                self.init_without_build(driver, config, tx_buf, max_packet_size);
             let usb = builder.build();
             (usb, wtx, wrx)
         }
@@ -185,6 +187,7 @@ pub mod dispatch_impl {
             driver: D,
             config: Config<'static>,
             tx_buf: &'static mut [u8],
+            max_packet_size: u16,
         ) -> (Builder<'static, D>, WireTxImpl<M, D>, WireRxImpl<D>) {
             let bufs = self.bufs_usb.take();
 
@@ -215,8 +218,8 @@ pub mod dispatch_impl {
             let mut function = builder.function(0xFF, 0, 0);
             let mut interface = function.interface();
             let mut alt = interface.alt_setting(0xFF, 0, 0, None);
-            let ep_out = alt.endpoint_bulk_out(64);
-            let ep_in = alt.endpoint_bulk_in(64);
+            let ep_out = alt.endpoint_bulk_out(max_packet_size);
+            let ep_in = alt.endpoint_bulk_in(max_packet_size);
             drop(function);
 
             let wtx = self.cell.init(Mutex::new(EUsbWireTxInner {
@@ -479,9 +482,11 @@ where
         return Ok(());
     }
 
+    let chunk_size = ep_in.info().max_packet_size as usize;
+
     // Calculate an estimated timeout based on the number of frames we need to send
     // For now, we use 2ms/frame by default, rounded UP
-    let frames = (out.len() + 63) / 64;
+    let frames = (out.len() + (chunk_size - 1)) / chunk_size;
     let timeout_ms = frames * timeout_ms_per_frame;
 
     let send_fut = async {
@@ -492,17 +497,17 @@ where
         }
         *pending_frame = true;
 
-        // write in segments of 64. The last chunk may
-        // be 0 < len <= 64.
-        for ch in out.chunks(64) {
+        // write in segments of chunk_size. The last chunk may
+        // be 0 < len <= chunk_size.
+        for ch in out.chunks(chunk_size) {
             if ep_in.write(ch).await.is_err() {
                 return Err(WireTxErrorKind::ConnectionClosed);
             }
         }
-        // If the total we sent was a multiple of 64, send an
+        // If the total we sent was a multiple of chunk_size, send an
         // empty message to "flush" the transaction. We already checked
         // above that the len != 0.
-        if (out.len() & (64 - 1)) == 0 && ep_in.write(&[]).await.is_err() {
+        if (out.len() & (chunk_size - 1)) == 0 && ep_in.write(&[]).await.is_err() {
             return Err(WireTxErrorKind::ConnectionClosed);
         }
 
