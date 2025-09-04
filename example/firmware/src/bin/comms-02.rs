@@ -25,6 +25,7 @@ use postcard_rpc::{
                 spawn_fn, WireRxBuf, WireRxImpl, WireSpawnImpl, WireStorage, WireTxImpl,
             },
             PacketBuffers,
+            USB_FS_MAX_PACKET_SIZE,
         },
         Dispatch, Sender, Server, SpawnContext,
     },
@@ -162,7 +163,7 @@ async fn main(spawner: Spawner) {
         accel: accel_ref,
     };
 
-    let (device, tx_impl, rx_impl) = STORAGE.init(driver, config, pbufs.tx_buf.as_mut_slice());
+    let (device, tx_impl, rx_impl) = STORAGE.init(driver, config, pbufs.tx_buf.as_mut_slice(), USB_FS_MAX_PACKET_SIZE);
 
     // Set timeout to 4ms/frame, instead of the default 2ms/frame
     tx_impl.set_timeout_ms_per_frame(4).await;
